@@ -27,4 +27,15 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getSubstract(): number{
+    if(this.totalIncomes < 1){
+      return 0;
+    }else{
+      let o = this.totalIncomes - this.totalExpenses;
+      return o /*< 1 ? 0 : o*/;
+    }
+
+
+  }
+
 }

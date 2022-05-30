@@ -26,7 +26,8 @@
                         <div class="card-body my-2">
                             <i class="fa-solid fa-list fa-3x text-info pb-4"></i>
                             <h4>Operaciones Realizadas</h4>
-                            <h6>{{totalOperations | currency:'RD$'}}</h6>
+                            <h6>Total: {{totalOperations | currency:'RD$'}}</h6>
+                            <h6 >Restante: <span [ngClass]="{'text-danger':getSubstract()<0,'text-success':getSubstract()>=0}">{{getSubstract() | currency:'RD$'}}</span></h6>
                         </div>
                     </div>
                 </div>
