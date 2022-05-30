@@ -1,0 +1,12 @@
+
+.income{
+    background-color: rgb(229, 252, 229) !important;
+}
+
+.expense{
+    background-color: rgb(253, 226, 226) !important;
+}
+
+h6{
+    margin-bottom: 0;
+}

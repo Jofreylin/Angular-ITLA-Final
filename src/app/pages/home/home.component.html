@@ -1,0 +1,37 @@
+
+    <div class="container ">
+        <div class="modules-section">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6 text-center py-3">
+                    <div class="card card-custom" [routerLink]="['register-income']">
+                        <div class="card-body my-2">
+                            <i class="fa-solid fa-money-bill-trend-up text-success fa-3x pb-4"></i>
+                            <h4>Registrar Ingreso</h4>
+                            <h6>Total: {{totalIncomes}}</h6>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6 text-center py-3">
+                    <div class="card card-custom" [routerLink]="['register-expense']">
+                        <div class="card-body my-2">
+                            <i class="fa-solid fa-angles-down text-danger fa-3x pb-4" ></i>
+                            <h4>Registrar Gasto</h4>
+                            <h6>Total: {{totalExpenses}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center py-3">
+                    <div class="card card-custom" [routerLink]="['list-operations']">
+                        <div class="card-body my-2">
+                            <i class="fa-solid fa-list fa-3x text-info pb-4"></i>
+                            <h4>Operaciones Realizadas</h4>
+                            <h6>Total: {{totalOperations}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+

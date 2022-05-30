@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header my-4 text-center">
+                    <h4>Lista de Operaciones Realizadas</h4>
+                    <br>
+                    <div class="form-group text-start">
+                        <label for="searchInput" class="form-label ml-3">Buscar</label>
+                        <input id="searchInput" type="text" class="form-control" placeholder="..."
+                            >
+
+                    </div>
+                </div>
+                <div class="card-body my-4">
+                    
+                    <div class="card mb-2" *ngFor="let operation of listOperationsFiltered; let i = index" [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
+                        <div class="card-body  " [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col">
+                                    <h6>
+                                        {{operation.registerDate | date}} 
+                                    </h6>
+                                    
+                                </div>
+                                <div class="col">
+                                    <h6>{{operation.description}} </h6>
+                                    
+                                </div>
+                                <div class="col">
+                                    <h6>{{operation.amount | currency:'RD$'}}</h6>
+                                </div>  
+                                <div class="col">
+                                    <div class="d-flex justify-content-center align-items-center " >
+                                        <!-- <button class="text-warning btn shadow me-2" *ngIf="operation.typeOperationId == 1" [routerLink]="['register-income',1,operation.id]">
+                                            <i class="fa-solid fa-pen-to-square fa-xl"></i>
+                                        </button>
+                                        <button class="text-warning btn shadow me-2" *ngIf="operation.typeOperationId == 2" [routerLink]="['register-expense',1,operation.id]">
+                                            <i class="fa-solid fa-pen-to-square fa-xl"></i>
+                                        </button> -->
+                                        <button class="text-danger btn shadow me-2" (click)="deleteOperation(operation)">
+                                            <i class="fa-solid fa-trash-can fa-xl"></i>
+                                        </button>
+                                        
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

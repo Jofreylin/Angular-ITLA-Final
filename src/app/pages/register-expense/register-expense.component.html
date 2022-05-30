@@ -1,0 +1,78 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header my-4 text-center">
+                    <h4>Registrar Gastos </h4>
+                    <br>
+                </div>
+                <div class="card-body my-4">
+                    <form [formGroup]="form">
+                        <div class="row justify-content-center py-3">
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label>Descripción</label>
+                                    <input  class="form-control" type="text"  formControlName="description">
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row justify-content-center py-3">
+                            <div class="col-md-8 ">
+                                <div class="form-group">
+                                    <label>Cantidad</label>
+                                    <input  class="form-control" type="text" prefix="RD$" mask="separator.2" thousandSeparator="," formControlName="amount">
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-4 ">
+                                <div class="form-group">
+                                    <label>Fecha</label>
+                                    <input  class="form-control" type="date" formControlName="registerDate">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="card-footer my-3 text-end">
+                    <button class="btn btn-success rounded-pill" (click)="saveOperation()" [disabled]="form.invalid">REGISTRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col-md-12">
+            <div class="card mb-2" *ngFor="let operation of listOperations; let i = index" [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
+                <div class="card-body  " [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col">
+                            <h6>
+                                {{operation.registerDate | date}} 
+                            </h6>
+                            
+                        </div>
+                        <div class="col">
+                            <h6>{{operation.description}} </h6>
+                            
+                        </div>
+                        <div class="col">
+                            <h6>{{operation.amount | currency:'RD$'}}</h6>
+                        </div>  
+                        <div class="col">
+                            <div class="d-flex justify-content-center align-items-center " >
+    
+                                <button class="text-danger btn shadow me-2" (click)="deleteOperation(operation)">
+                                    <i class="fa-solid fa-trash-can fa-xl"></i>
+                                </button>
+                                
+                            </div>
+                        </div>  
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
