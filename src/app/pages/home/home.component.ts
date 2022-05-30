@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.operationsService.getOperations().subscribe({
       next: (res)=>{
-        this.totalExpenses = res.length > 0 ? res.filter(x=>x.typeOperationId == 2).length : 0;
-        this.totalIncomes = res.length > 0 ? res.filter(x=>x.typeOperationId == 1).length: 0;
-        this.totalOperations = res.length;
+        res.length > 0 ? res.filter(x=>x.typeOperationId == 2).forEach(y=>{this.totalExpenses = this.totalExpenses + y.amount}) : 0;
+        res.length > 0 ? res.filter(x=>x.typeOperationId == 1).forEach(y=>{this.totalIncomes = this.totalIncomes + y.amount}) : 0;
+        res.length > 0 ? res.forEach(y=>{this.totalOperations = this.totalOperations + y.amount}) : 0;
       },
       error: (err)=>{
         console.log(err);
