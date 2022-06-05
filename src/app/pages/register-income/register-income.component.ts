@@ -13,6 +13,7 @@ export class RegisterIncomeComponent implements OnInit {
 
 
   listOperations: IOperations[] = [];
+  listOperationsFiltered: IOperations[] = [];
 
   form: FormGroup = new FormGroup({
     description: new FormControl('',Validators.required),
@@ -70,6 +71,10 @@ export class RegisterIncomeComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  changeListForPaginator(value: IOperations[]){
+    this.listOperationsFiltered = value;
   }
 
 }

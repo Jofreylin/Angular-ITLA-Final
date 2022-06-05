@@ -12,7 +12,7 @@ import { OperationsService } from 'src/app/services/operations.service';
 export class RegisterExpenseComponent implements OnInit {
 
   listOperations: IOperations[] = [];
-
+  listOperationsFiltered: IOperations[] = [];
   form: FormGroup = new FormGroup({
     description: new FormControl('',Validators.required),
     registerDate: new FormControl(this.datePipe.transform((new Date),'yyyy-MM-dd'),Validators.required),
@@ -69,6 +69,10 @@ export class RegisterExpenseComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  changeListForPaginator(value: IOperations[]){
+    this.listOperationsFiltered = value;
   }
 
 }

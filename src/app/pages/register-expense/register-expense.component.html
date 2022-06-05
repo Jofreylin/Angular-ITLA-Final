@@ -45,8 +45,9 @@
     </div>
     <div class="row py-5">
         <div class="col-md-12">
-            <div class="card mb-2" *ngFor="let operation of listOperations; let i = index" [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
-                <div class="card-body  " [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
+            <app-paginator [list]="listOperations" (listTransformedOutput)="changeListForPaginator($event)"></app-paginator>
+            <div class="card mb-2" *ngFor="let operation of listOperationsFiltered; let i = index" >
+                <div class="card-body  " >
                     <div class="row justify-content-center align-items-center">
                         <div class="col">
                             <h6>
@@ -58,9 +59,12 @@
                             <h6>{{operation.description}} </h6>
                             
                         </div>
-                        <div class="col">
+                        <div class="col d-flex">
+
+                            <i class="fa-solid fa-angles-down text-danger me-2" *ngIf="operation.typeOperationId == 2"></i>
+                            <i class="fa-solid fa-angles-up text-success me-2" *ngIf="operation.typeOperationId == 1"></i>
                             <h6>{{operation.amount | currency:'RD$'}}</h6>
-                        </div>  
+                        </div>    
                         <div class="col">
                             <div class="d-flex justify-content-center align-items-center " >
     

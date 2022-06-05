@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IFilterModel, ISearcherOptions } from 'src/app/models/filter';
 import { IOperations } from 'src/app/models/operations';
 import { OperationsService } from 'src/app/services/operations.service';
 
@@ -11,8 +12,46 @@ export class ListOperationsComponent implements OnInit {
 
   listOperations: IOperations[] = [];
   listOperationsFiltered: IOperations[] = [];
+  listOperationsFilteredByKey: IOperations[] = [];
 
-  searchKey: string = "";
+  searchOptions: ISearcherOptions[]=[
+    {
+      name: 'Tipo',
+      attribute: 'typeOperationId',
+      isDate: false,
+      isMoney: false,
+      isDropDown: true,
+      nestedDropdown: [
+        {
+          name: 'Ingresos',
+          value: (1).toString()
+        },
+        {
+          name: 'Gastos',
+          value: (2).toString()
+        }
+      ]
+    },
+    {
+      name: 'Fecha',
+      attribute: 'registerDate',
+      isDate: true,
+      isMoney: false,
+      isDropDown: false,
+      nestedDropdown: []
+    },
+    {
+      name: 'Monto',
+      attribute: 'amount',
+      isDate: false,
+      isMoney: true,
+      isDropDown: false,
+      nestedDropdown: []
+    }
+    
+  ]
+  
+  
 
   constructor(private operationsService: OperationsService) { }
 
@@ -43,6 +82,13 @@ export class ListOperationsComponent implements OnInit {
     })
   }
 
+  changeListForPaginator(value: IOperations[]){
+    this.listOperationsFiltered = value;
+  }
+
+  changeListForSearch(value: IOperations[]){
+    this.listOperationsFilteredByKey = value;
+  }
   
 
 }

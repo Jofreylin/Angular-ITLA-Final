@@ -5,17 +5,12 @@
                 <div class="card-header my-4 text-center">
                     <h4>Lista de Operaciones Realizadas</h4>
                     <br>
-                    <div class="form-group text-start">
-                        <label for="searchInput" class="form-label ml-3">Buscar</label>
-                        <input id="searchInput" type="text" class="form-control" placeholder="..."
-                            >
-
-                    </div>
+                    <app-searcher [searchOptions]="searchOptions" [list]="listOperations" (listFilteredOutput)="changeListForSearch($event)"></app-searcher>
                 </div>
                 <div class="card-body my-4">
-                    
-                    <div class="card mb-2" *ngFor="let operation of listOperationsFiltered; let i = index" [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
-                        <div class="card-body  " [ngClass]="{'income': operation.typeOperationId == 1, 'expense': operation.typeOperationId == 2}">
+                    <app-paginator [list]="listOperationsFilteredByKey" (listTransformedOutput)="changeListForPaginator($event)"></app-paginator>
+                    <div class="card mb-2 shadow" *ngFor="let operation of listOperationsFiltered; let i = index " >
+                        <div class="card-body  " >
                             <div class="row justify-content-center align-items-center">
                                 <div class="col">
                                     <h6>
@@ -27,7 +22,10 @@
                                     <h6>{{operation.description}} </h6>
                                     
                                 </div>
-                                <div class="col">
+                                <div class="col d-flex">
+
+                                    <i class="fa-solid fa-angles-down text-danger me-2" *ngIf="operation.typeOperationId == 2"></i>
+                                    <i class="fa-solid fa-angles-up text-success me-2" *ngIf="operation.typeOperationId == 1"></i>
                                     <h6>{{operation.amount | currency:'RD$'}}</h6>
                                 </div>  
                                 <div class="col">

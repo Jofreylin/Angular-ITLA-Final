@@ -1,0 +1,19 @@
+<div class="row pb-3 ">
+    <div class="col-3 ">
+        <select class="form-select ms-2" [(ngModel)]="listParams.quantityToList" (change)="changeQuantityToList(listParams.quantityToList)">
+            <option [value]="quantity" *ngFor="let quantity of listOfQuantities" >{{quantity}}</option>
+        </select>
+    </div>
+    <div class="col-9 d-flex align-items-center justify-content-end">
+        <h6 class="me-3">Total de Registros: {{list.length}} </h6>
+        <h6 class="me-3">|</h6>
+        <h6 class="me-3">Página: {{listParams.page}}</h6>
+        <button (click)="goPreviusPage()" [disabled]="this.listParams.page <= 1" class="btn btn-primary me-2">
+            <i class="fa-solid fa-angles-left"></i>
+        </button>
+        <button (click)="goNextPage()" [disabled]="this.listTransformed.length == 0" class="btn btn-primary me-2">
+            <i class="fa-solid fa-angles-right"></i>
+        </button>
+        
+    </div>
+</div>

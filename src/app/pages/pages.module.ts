@@ -9,6 +9,7 @@ import { RegisterIncomeComponent } from './register-income/register-income.compo
 import { RegisterExpenseComponent } from './register-expense/register-expense.component';
 import { ListOperationsComponent } from './list-operations/list-operations.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { FiltroPipe } from './pipes/filtro.pipe';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NgxMaskModule } from 'ngx-mask';
     HomeComponent,
     RegisterIncomeComponent,
     RegisterExpenseComponent,
-    ListOperationsComponent
+    ListOperationsComponent,
+    FiltroPipe
   ],
   imports: [
     CommonModule,
