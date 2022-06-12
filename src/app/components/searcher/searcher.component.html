@@ -1,25 +1,29 @@
 <div class="row">
-    <div class="col-md-8 ">
+
+    <div class="col-md-8 " >
+
+
         <div class="form-group text-start">
             <label *ngIf="!selectedOption.isDate" for="searchInput" class="form-label ms-3">Buscar</label>
             <input *ngIf="!selectedOption.isDate && !selectedOption.isMoney && !selectedOption.isDropDown"
                 [(ngModel)]="searchKey" (input)="filterList()" id="searchInput" type="text" class="form-control"
                 [readonly]="!selectedOption.name || !selectedOption.attribute" placeholder="">
 
-            <label *ngIf="selectedOption.isDate" for="searchInput" class="form-label ms-3">Seleccionar Fecha de Inicio y Fin</label>
+            <label *ngIf="selectedOption.isDate" for="searchInput" class="form-label ms-3">Seleccionar Fecha de Inicio y
+                Fin</label>
 
             <div class="d-flex">
                 <input class="form-control me-2" *ngIf="selectedOption.isDate" [(ngModel)]="selectedFromDate"
-                    (ngModelChange)="filterList()" type="date" id="searchInput"  [max]="selectedToDate"
+                    (ngModelChange)="filterList()" type="date" id="searchInput" [max]="selectedToDate"
                     [readonly]="!selectedOption.name || !selectedOption.attribute">
                 <input class="form-control" *ngIf="selectedOption.isDate" [(ngModel)]="selectedToDate"
                     (ngModelChange)="filterList()" type="date" id="searchInput" [min]="selectedFromDate"
                     [readonly]="!selectedOption.name || !selectedOption.attribute">
             </div>
 
-            <input class="form-control" *ngIf="selectedOption.isMoney" [(ngModel)]="searchKey" (input)="filterList()"
-                prefix="RD$" mask="separator.2" thousandSeparator="," type="text" id="searchInput"
-                [readonly]="!selectedOption.name || !selectedOption.attribute">
+            <input class="form-control" *ngIf="selectedOption.isMoney" [(ngModel)]="searchKeyMoney"
+                (input)="filterList()" prefix="RD$" mask="separator.2" thousandSeparator="," type="text"
+                id="searchInput" [readonly]="!selectedOption.name || !selectedOption.attribute">
 
             <select *ngIf="selectedOption.isDropDown" class="form-select ms-2" [(ngModel)]="selectedFromNestedDrop"
                 (change)="filterList()">
@@ -30,10 +34,11 @@
 
 
     </div>
-    <div class="col-md-4 d-flex justify-content-end align-items-end">
+    <div class="col-md-4 d-flex justify-content-end align-items-end" >
         <select class="form-select ms-2" [(ngModel)]="selectedOption" (change)="changeOption()">
             <option [ngValue]="null" disabled>Seleccionar</option>
             <option [ngValue]="option" *ngFor="let option of searchOptions">{{option.name}}</option>
         </select>
     </div>
+
 </div>

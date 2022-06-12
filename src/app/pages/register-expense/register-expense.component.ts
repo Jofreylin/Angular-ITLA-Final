@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IOperations } from 'src/app/models/operations';
 import { OperationsService } from 'src/app/services/operations.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-expense',
@@ -61,12 +62,37 @@ export class RegisterExpenseComponent implements OnInit {
   }
 
   deleteOperation(model: IOperations){
-    this.operationsService.deleteOperation(model.id).subscribe({
-      next: (res)=>{
-        this.getOperations();
-      },
-      error: (err)=>{
-        console.log(err);
+    Swal.fire({
+      title: '¿Seguro que desea eliminar este registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      confirmButtonColor: '#e63946',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        Swal.fire({
+          title: '',
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+          },
+          allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+        })
+    
+          this.operationsService.deleteOperation(model.id).subscribe({
+            next: (res)=>{
+              Swal.close();
+              this.getOperations();
+            },
+            error: (err)=>{
+              console.log(err);
+              Swal.close()
+            }
+          })
+        
       }
     })
   }

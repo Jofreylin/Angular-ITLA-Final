@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { EnumFilterType } from 'src/app/models/enum';
 import { INestedDropDown, ISearcherOptions } from 'src/app/models/filter';
 
 @Component({
@@ -23,6 +24,7 @@ export class SearcherComponent implements OnInit, OnChanges {
     nestedDropdown: []
   }
 
+
   selectedFromNestedDrop: INestedDropDown = {
     name: '',
     value: ''
@@ -31,6 +33,7 @@ export class SearcherComponent implements OnInit, OnChanges {
   selectedFromDate: string = '';
   selectedToDate: string = '';
   searchKey: string = '';
+  searchKeyMoney: string = '';
 
 
   constructor() { 
@@ -49,6 +52,7 @@ export class SearcherComponent implements OnInit, OnChanges {
   }
 
   filterList(){
+    
     let attribute: string;
     let value: string;
 
@@ -96,7 +100,7 @@ export class SearcherComponent implements OnInit, OnChanges {
     if(this.selectedOption.isMoney){
       console.log('dinero')
       attribute = this.selectedOption.attribute;
-      value = this.searchKey;
+      value = this.searchKeyMoney;
 
       if(!value){
         this.filteredList = [...this.list];
@@ -129,8 +133,14 @@ export class SearcherComponent implements OnInit, OnChanges {
       this.listFilteredOutput.emit(this.filteredList);
       return;
     }
-
     
+  }
+
+  clearOptions(){
+    this.selectedFromDate = '';
+    this.selectedToDate = '';
+    this.searchKey = '';
+    this.searchKeyMoney = '';
   }
 
   changeOption(){
